@@ -26,16 +26,9 @@ jobs:
       run: dotnet test --no-build --verbosity normal
     - name: benchmarking
       run: dotnet run -c Release --project Benchmarks/Benchmarks.csproj --exporters json
-    - name: List Files
-      uses: mirko-felice/list-files-action@v3.0.5
-      with:
-        repo: ${{ github.repository }}
-        ref: ${{ github.ref }}
-        path: "."
-        ext: "*.*"
     - name: Store benchmark result
       uses: rhysd/github-action-benchmark@v1
       with:
         tool: 'benchmarkdotnet'
-        output-file-path: ../../BenchmarkDotNet.Artifacts/results/Benchmarks.Md5VsSha256-report-full-compressed.json
+        output-file-path: BenchmarkDotNet.Artifacts/results/Benchmarks.Md5VsSha256-report-full-compressed.json
      
