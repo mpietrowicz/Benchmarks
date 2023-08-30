@@ -1,9 +1,7 @@
-﻿using System;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using BenchmarkDotNet.Attributes;
-using BenchmarkDotNet.Running;
 
-namespace MyBenchmarks
+namespace Benchmarks
 {
     [JsonExporterAttribute.Full]
     [JsonExporterAttribute.FullCompressed]
