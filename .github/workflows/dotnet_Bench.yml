@@ -11,9 +11,7 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v3
     - name: Setup .NET
@@ -26,8 +24,14 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
-    - name: Store benchmark result
-      uses: rhysd/github-action-benchmark@v1
-      with:
-        tool: 'benchmarkdotnet'
-        output-file-path: BenchmarkDotNet.Artifacts/results/Sample.Benchmarks-report-full-compressed.json
+    
+  benchmark:
+     runs-on: ubuntu-latest
+     steps:
+       - name: Test
+         run: dotnet run --exporters json
+       - name: Store benchmark result
+         uses: rhysd/github-action-benchmark@v1
+         with:
+           tool: 'benchmarkdotnet'
+           output-file-path: BenchmarkDotNet.Artifacts/results/Sample.Benchmarks-report-full-compressed.json
